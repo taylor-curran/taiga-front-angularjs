@@ -1,111 +1,296 @@
-## Taiga Front
+# Taiga Frontend
 
-&gt; **READ THIS FIRST!**: We recently announced Taiga plans for the future and they greatly affect how we manage this repository and the current Taiga 6 release. Check it [here](https://blog.taiga.io/announcing_taiganext.html).
+This is the AngularJS frontend application for Taiga, an agile project management platform. This frontend connects to Taiga's public API to provide full functionality.
 
-[![Managed with Taiga.io](https://img.shields.io/badge/managed%20with-TAIGA.io-709f14.svg)](https://tree.taiga.io/project/taiga/ "Managed with Taiga.io")
-[![Build Status](https://img.shields.io/travis/taigaio/taiga-front.svg)](https://travis-ci.org/taigaio/taiga-front "Build Status")
+## Prerequisites
 
-## Get the compiled version
+- **Node.js**: Version 14.x recommended (for compatibility with node-sass)
+- **Python 3**: For running the development server
+- **npm**: Comes with Node.js
+- **Taiga.io Account**: Create one at https://taiga.io or use existing credentials
 
-You can get the compiled version of this code in the
-[taiga-front-dist](http://github.com/taigaio/taiga-front-dist) repository
+## Quick Start
 
-## Documentation
+```bash
+# 1. Install dependencies
+npm install
 
-Currently, we have authored three main documentation hubs:
+# 2. Fix node-sass compatibility (required on ARM64/M1 Macs)
+npm rebuild node-sass
 
--   **[API](https://docs.taiga.io/api.html)**: Our API documentation and reference for developing from Taiga API.
--   **[Documentation](https://docs.taiga.io/)**: If you need to install Taiga on your own server, this is the place to find some guides.
--   **[Taiga Community](https://community.taiga.io/)**: This page is intended to be the support reference page for the users.
+# 3. Build the project
+npx gulp deploy
 
-## Bug reports
+# 4. Configure to use Taiga's public API
+cp dist/conf.example.json dist/conf.json
+# Edit dist/conf.json and set "api": "https://api.taiga.io/api/v1/"
 
-If you **find a bug** in Taiga you can always report it:
+# 5. Start the server
+cd dist
+python3 -m http.server 9001
 
--   in [Taiga issues](https://tree.taiga.io/project/taiga/issues). **This is the preferred way**
--   in [Github issues](https://github.com/taigaio/taiga-front/issues)
--   send us a mail to support@taiga.io if is a bug related to [tree.taiga.io](https://tree.taiga.io)
--   send us a mail to security@taiga.io if is a **security bug**.
+# 6. Open http://localhost:9001 in your browser
+# 7. Log in with your Taiga.io account
+```
 
-One of our fellow Taiga developers will search, find and hunt it as soon as possible.
+## Detailed Setup Instructions
 
-Please, before reporting a bug, write down how can we reproduce it, your operating system, your browser and version, and if it's possible, a screenshot. Sometimes it takes less time to fix a bug if the developer knows how to find it.
+### 1. Installing Dependencies
 
-## Community
+```bash
+npm install
+```
 
-If you **need help to setup Taiga**, want to **talk about some cool enhancement** or you have **some questions**, please go to [Taiga community](https://community.taiga.io/).
+**Common Issues:**
+- **node-sass binary incompatibility**: If you see errors about node-sass not having a binding for your environment (especially on ARM64/M1 Macs), run:
+  ```bash
+  npm rebuild node-sass
+  ```
 
-If you want to be up to date about announcements of releases, important changes and so on, you can subscribe to our newsletter (you will find it by scrolling down at [https://taiga.io](https://www.taiga.io/)) and follow [@taigaio](https://twitter.com/taigaio) on Twitter.
+### 2. Building the Project
 
-## Contribute to Taiga
+The project uses Gulp for building. The build process compiles CoffeeScript, SCSS, and Jade templates.
 
-There are many different ways to contribute to Taiga's platform, from patches, to documentation and UI enhancements, just find the one that best fits with your skills. Check out our detailed [contribution guide](https://community.taiga.io/t/how-can-i-contribute/159)
+```bash
+# Full production build (REQUIRED before running)
+npx gulp deploy
 
-## Code of Conduct
+# Development build with watch mode (optional for development)
+npx gulp
+```
 
-Help us keep the Taiga Community open and inclusive. Please read and follow our [Code of Conduct](https://github.com/taigaio/code-of-conduct/blob/main/CODE_OF_CONDUCT.md).
+**What the build does:**
+- Compiles CoffeeScript files to JavaScript
+- Compiles SCSS to CSS  
+- Processes Jade templates
+- Copies assets (images, fonts, emojis)
+- Creates versioned directories (e.g., `v-1756578595879/`)
+- Generates `dist/` directory with all production files
+
+**Build Output Structure:**
+```
+dist/
+├── conf.json                 # API configuration (you create this)
+├── conf.example.json        # Template for conf.json
+├── index.html               # Main HTML file
+├── v-[timestamp]/           # Versioned assets
+│   ├── js/                  # Compiled JavaScript
+│   │   ├── app.js          # Application code
+│   │   ├── libs.js         # Third-party libraries
+│   │   └── templates.js    # Compiled templates
+│   ├── styles/             # Compiled CSS
+│   ├── images/             # Images
+│   ├── emojis/             # Emoji assets
+│   └── fonts/              # Web fonts
+```
+
+### 3. Configuring the API (REQUIRED)
+
+The frontend must be configured to connect to Taiga's public API. Without this, the UI will not function.
+
+Create `dist/conf.json` with the following content:
+
+```json
+{
+    "api": "https://api.taiga.io/api/v1/",
+    "eventsUrl": null,
+    "baseHref": "/",
+    "debug": true,
+    "debugInfo": true,
+    "defaultLanguage": "en",
+    "themes": ["taiga"],
+    "defaultTheme": "taiga",
+    "defaultLoginEnabled": true,
+    "publicRegisterEnabled": true,
+    "feedbackEnabled": true,
+    "supportUrl": "https://community.taiga.io/",
+    "privacyPolicyUrl": null,
+    "termsOfServiceUrl": null,
+    "maxUploadFileSize": null,
+    "contribPlugins": [],
+    "tagManager": {
+        "accountId": null
+    },
+    "tribeHost": null,
+    "enableAsanaImporter": false,
+    "enableGithubImporter": false,
+    "enableJiraImporter": false,
+    "enableTrelloImporter": false,
+    "gravatar": false,
+    "rtlLanguages": ["ar", "fa", "he"]
+}
+```
+
+**Important**: The `"api": "https://api.taiga.io/api/v1/"` line is critical. This connects your local frontend to Taiga's cloud backend.
+
+### 4. Running the Application
+
+After building and configuring, serve the `dist` directory with a static file server:
+
+```bash
+# Using Python (recommended)
+cd dist
+python3 -m http.server 9001
+
+# Alternative: Using Node.js http-server
+npx http-server dist -p 9001
+```
+
+Open http://localhost:9001 in your browser.
+
+### 5. Using the Application
+
+With the public API configured:
+- **Log in** with your existing Taiga.io account
+- **Create a new account** if you don't have one
+- **Browse** public projects
+- **Create and manage** your own projects
+- All data is stored on Taiga's cloud servers
+
+## Running Tests
+
+The project includes 474 unit tests written in CoffeeScript.
+
+```bash
+# Build first (REQUIRED - tests need dist files)
+npx gulp deploy
+
+# Run tests in watch mode
+npm test
+
+# Run tests once (CI mode)
+npm run ci:test
+```
+
+**Test Configuration:**
+- Test runner: Karma
+- Test framework: Mocha with Chai
+- Browsers: Chrome and HeadlessChrome
+- Test files: `app/**/*.spec.coffee`
+
+## Common Issues and Solutions
+
+### 1. Blank Page on Load
+
+**Symptoms:** Page loads but shows blank white screen
+
+**Solutions:**
+- **Build not run**: Always run `npx gulp deploy` before starting
+- **Missing conf.json**: Ensure `dist/conf.json` exists with correct API endpoint
+- **Browser cache**: Hard refresh with `Cmd+Shift+R` (Mac) or `Ctrl+F5` (PC)
+- **Version mismatch**: Try incognito mode or different port if you rebuilt recently
+
+### 2. 404 Errors in Console
+
+**Common 404s and fixes:**
+- `conf.json 404`: Create it in `dist/` directory (see step 3 above)
+- `v-*/js/libs.js 404`: Run `npx gulp deploy` to build the project
+- `emojis-data.json 404`: Build incomplete, run `npx gulp deploy` again
+
+### 3. node-sass Build Errors
+
+**Error:** `Error: Node Sass does not yet support your current environment`
+
+**Solution:**
+```bash
+npm rebuild node-sass
+```
+
+If rebuild doesn't work:
+```bash
+npm uninstall node-sass
+npm install node-sass@4.14.1
+```
+
+### 4. Cannot Log In
+
+**Issue:** Login fails or hangs
+
+**Check:**
+- Ensure `conf.json` has `"api": "https://api.taiga.io/api/v1/"` (with trailing slash)
+- Verify you're using correct Taiga.io credentials
+- Check browser console for CORS or network errors
+- Try creating a new account to test connectivity
+
+### 5. Tests Fail to Run
+
+**Error:** `Can't find dist/js/app.js`
+
+**Solution:** Always build before testing:
+```bash
+npx gulp deploy && npm test
+```
+
+## Development Workflow
+
+### For UI Development
+
+1. Build the project:
+   ```bash
+   npx gulp deploy
+   ```
+
+2. Start development watch (optional):
+   ```bash
+   npx gulp
+   ```
+
+3. Serve the dist directory:
+   ```bash
+   cd dist
+   python3 -m http.server 9001
+   ```
+
+4. Open http://localhost:9001
+5. Log in with Taiga.io credentials
+6. Make changes to source files
+7. Rebuild or let watch mode rebuild
+8. Refresh browser to see changes
+
+### Browser Cache Issues
+
+If changes aren't appearing:
+- Hard refresh: `Cmd+Shift+R` (Mac) or `Ctrl+F5` (PC)
+- Open in incognito/private mode
+- Change port number: `python3 -m http.server 9002`
+- Clear browser cache completely
+
+## Project Structure
+
+```
+taiga-front/
+├── app/                     # Source code
+│   ├── coffee/             # CoffeeScript application code
+│   │   └── modules/        # Feature modules
+│   ├── styles/             # SCSS styles
+│   ├── partials/           # Jade templates
+│   ├── images/             # Source images
+│   └── **/*.spec.coffee    # Unit tests
+├── dist/                   # Built application (git-ignored)
+│   └── conf.json           # API configuration (you create)
+├── conf/                   # Configuration examples
+├── e2e/                    # End-to-end tests
+├── gulpfile.js            # Build configuration
+├── karma.conf.js          # Test runner configuration
+└── package.json           # Dependencies
+```
+
+## Available npm Scripts
+
+- `npm test` - Run tests in watch mode
+- `npm start` - Start development build with watch
+- `npm run ci:test` - Run tests once for CI
+- `npm run e2e` - Run end-to-end tests  
+- `npm run scss-lint` - Lint SCSS files
+
+## Additional Resources
+
+- [Taiga.io](https://taiga.io) - Create account and manage projects
+- [Taiga Documentation](https://docs.taiga.io/)
+- [Taiga API Documentation](https://docs.taiga.io/api.html)
+- [Taiga Community](https://community.taiga.io/)
+- [Backend Repository](https://github.com/taigaio/taiga-back) (not needed for this setup)
 
 ## License
 
-Every code patch accepted in this repository is licensed under [AGPL 3.0](LICENSE). You must be careful to not include any code that can not be licensed under this license.
-
-Please read carefully [our license](LICENSE) and ask us if you have any questions as well as the [Contribution policy](https://github.com/taigaio/taiga-front/blob/main/CONTRIBUTING.md).
-
-## Initial dev env
-
-Install requirements:
-
-**Node + Gulp**
-
-We recommend using [nvm](https://github.com/creationix/nvm) to manage different node versions
-
-```
-npm start
-```
-
-And go in your browser to: http://localhost:9001/
-
-#### E2E test
-
-If you want to run e2e tests
-
-```
-npm install -g protractor
-npm install -g mocha
-npm install -g babel@5
-
-webdriver-manager update
-```
-
-To run a local Selenium Server, you will need to have the Java Development Kit (JDK) installed.
-
-## Tests
-
-#### Unit tests
-
--   To run **unit tests**
-
-    ```
-    npx gulp
-    ```
-
-    ```
-    npm test
-    ```
-
-#### E2E tests
-
--   To run **e2e tests** you need [taiga-back](https://github.com/taigaio/taiga-back) running and
-
-    ```
-    npx gulp
-    ```
-
-    ```
-    webdriver-manager start
-    ```
-
-    ```
-    protractor conf.e2e.js --suite=auth     # To tests authentication
-    protractor conf.e2e.js --suite=full     # To test all the platform authenticated
-    ```
+See LICENSE file for details.
