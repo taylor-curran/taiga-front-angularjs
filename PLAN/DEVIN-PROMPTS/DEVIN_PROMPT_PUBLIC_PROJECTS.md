@@ -4,7 +4,7 @@
 You're working on migrating the Taiga frontend from AngularJS to React. The scaffold and home page have been completed. Now we need to implement the Public Projects page that lists all public projects with search and filtering capabilities.
 
 ## Current State
-- **Working Directory**: `/Users/taylorcurran/Documents/demos/homemade/taiga-front-migration-target`
+- **Working Directory**: `/taiga-front-migration-target`
 - **Tech Stack**: React 18, Vite 5, React Router 6, Axios
 - **API Base URL**: `https://api.taiga.io/api/v1` (configured in `.env` as `VITE_API_URL`)
 - **Dev Server**: Runs on port 3001 (`npm run dev`)
