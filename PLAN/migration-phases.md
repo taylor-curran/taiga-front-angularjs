@@ -1,67 +1,68 @@
 # Migration Phases & Timeline
 
-## Phase 1: Foundation (Week 1-2)
-- [ ] Set up React project with CRA
-- [ ] Configure project structure
-- [ ] Set up routing with React Router
-- [ ] Create base API service layer
-- [ ] Port global styles from SCSS
-- [ ] Set up authentication context
+## Phase 1: Foundation (Week 1-2) ✅ COMPLETED
+- [x] Set up React project with Vite
+- [x] Configure project structure
+- [x] Set up routing with React Router
+- [x] Create base API service layer
+- [x] Port basic styles
+- [x] Verify API connectivity (public endpoints)
 
-## Phase 2: Core Pages (Week 3-4)
+## Phase 2: Public Content Pages (Week 3-4)
 - [ ] **Home Page** (Priority 1)
-  - Dashboard view
-  - Projects list
-  - Working on section
-  - User activity feed
-- [ ] **Login/Register Pages**
-  - Authentication forms
-  - Password recovery
-  - Session management
+  - Discover featured projects (/discover endpoint)
+  - Public projects list
+  - API status indicator
+  - Language selector using /locales
+- [ ] **Public Projects Page**
+  - List all public projects (/projects?is_public=true)
+  - Project cards with stats
+  - Search/filter functionality
 
-## Phase 3: Project Views (Week 5-8)
-- [ ] **Project List Page**
-  - Grid/List views
-  - Project cards
-  - Filtering and search
-- [ ] **Project Detail Page**
-  - Project timeline
-  - Team members
-  - Basic project info
+## Phase 3: Public Project Details (Week 5-6)
+- [ ] **Public Project Detail Page**
+  - Project overview (for public projects)
+  - Project statistics (/projects/{id}/stats)
+  - Team member list (public info only)
+  - Project metadata
+- [ ] **Project Discovery Page**
+  - Featured projects showcase
+  - Categories and tags
+  - Popular projects
 
-## Phase 4: Agile Features (Week 9-12)
-- [ ] **Backlog Page**
-  - User stories list
-  - Sprint management
-  - Drag and drop functionality
-- [ ] **Kanban Board**
-  - Column layout
-  - Card movement
-  - WIP limits
-- [ ] **Taskboard**
-  - Sprint taskboard
-  - Task cards
-  - Status updates
+## Phase 4: Read-Only Agile Views (Week 7-8)
+- [ ] **Public Backlog View**
+  - Read-only user stories list
+  - Sprint information (if public)
+  - No editing capabilities
+- [ ] **Public Kanban Board**
+  - View-only column layout
+  - Task cards display
+  - Status visualization
+- [ ] **Public Issues View**
+  - Issues list (if public)
+  - Issue details
+  - Read-only filters
 
-## Phase 5: Content Features (Week 13-14)
-- [ ] **Wiki Pages**
-  - Wiki viewer
-  - Wiki editor
+## Phase 5: Public Content Features (Week 9-10)
+- [ ] **Public Wiki Pages**
+  - Wiki viewer (read-only)
   - Wiki navigation
-- [ ] **Issues Pages**
-  - Issues list
-  - Issue detail
-  - Issue creation/editing
+  - Public wiki content display
+- [ ] **Configuration Page**
+  - Display app config from /config endpoint
+  - Available languages from /locales
+  - Public settings display
 
-## Phase 6: Administrative Features (Week 15-16)
-- [ ] **User Settings**
-  - Profile management
-  - Preferences
-  - Notifications
-- [ ] **Project Admin**
-  - Project settings
-  - Team management
-  - Permissions
+## Phase 6: Enhanced UI/UX (Week 11-12)
+- [ ] **Search & Filters**
+  - Project search functionality
+  - Filter by tags/categories
+  - Sort options
+- [ ] **Responsive Design**
+  - Mobile-friendly layouts
+  - Tablet optimization
+  - Improved navigation
 
 ## Phase 7: Polish & Testing (Week 17-18)
 - [ ] Cross-browser testing
@@ -72,32 +73,31 @@
 
 ## Priority Order
 
-### Must Have (Core)
-1. Home/Dashboard
-2. Authentication (Login/Register)
-3. Project List
-4. Project Detail
-5. Backlog
-6. Kanban Board
+### Must Have (Core) - Public Access Only
+1. Home/Dashboard with Discover
+2. Public Projects List
+3. Public Project Detail View
+4. API Health Status
+5. Language Selection
 
 ### Should Have
-7. Taskboard
-8. Issues
-9. Wiki
-10. User Settings
-11. Team View
+6. Public Backlog View (read-only)
+7. Public Kanban Board (read-only)
+8. Public Wiki Pages
+9. Project Statistics
+10. Search & Filters
 
 ### Nice to Have
-12. Admin Panel
-13. Import/Export
-14. Advanced Search
-15. Notifications
-16. External Apps Integration
+11. Project Discovery/Featured
+12. Advanced Filtering
+13. Mobile Responsive Design
+14. Performance Optimizations
+15. Offline Caching
 
 ## Success Metrics Per Phase
 
-- **Phase Completion**: All listed features functional
-- **Visual Parity**: UI matches original exactly
-- **API Integration**: All endpoints connected
-- **Basic Tests**: Core functionality covered
-- **No Breaking Changes**: Users experience no disruption
+- **Phase Completion**: All listed features functional with public API
+- **Visual Parity**: UI matches original for public views
+- **API Integration**: All public endpoints connected
+- **Basic Tests**: Public functionality covered
+- **No Auth Required**: App functions fully without login
