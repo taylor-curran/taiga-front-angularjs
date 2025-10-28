@@ -2,6 +2,8 @@
 
 This is the AngularJS frontend application for Taiga, an agile project management platform. This frontend connects to Taiga's public API to provide full functionality.
 
+<!-- Test comment added by Devin for PR verification -->
+
 ## Prerequisites
 
 - **Node.js**: Version 14.x recommended (for compatibility with node-sass)
