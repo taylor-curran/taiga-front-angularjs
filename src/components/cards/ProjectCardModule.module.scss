@@ -1,0 +1,100 @@
+// ProjectCard CSS Module Example
+// This file demonstrates the CSS modules pattern for future use.
+//
+// CSS modules automatically scope class names to the component,
+// preventing style collisions. Use this pattern when:
+// - Building new components that don't exist in the AngularJS app
+// - Refactoring components that have style conflicts with global styles
+// - Creating utility components shared across many pages
+//
+// Usage in a React component:
+//   import styles from './ProjectCardModule.module.scss';
+//   <div className={styles.card}>...</div>
+
+.card {
+  background: $color-white;
+  border: 1px solid $color-gray400;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  transition: box-shadow 0.2s ease-in-out;
+  width: 300px;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba($color-black, 0.12);
+  }
+}
+
+.tagsContainer {
+  display: flex;
+  height: 0.3rem;
+}
+
+.tag {
+  flex: 1;
+}
+
+.inner {
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  flex-grow: 0;
+}
+
+.logo {
+  display: inline-block;
+  flex-basis: 50px;
+  flex-shrink: 0;
+  height: 50px;
+  margin-right: 0.5rem;
+  width: 50px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.logoEmpty {
+  background-color: $color-gray300;
+  border-radius: 3px;
+  height: 50px;
+  width: 50px;
+}
+
+.name {
+  @include font-size(large);
+  align-items: center;
+  column-gap: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.25rem;
+
+  a {
+    color: $color-black600;
+  }
+}
+
+.description {
+  @include font-size(small);
+  @include font-type(regular);
+  color: $color-black600;
+}
+
+.statistics {
+  column-gap: 0.5rem;
+  display: flex;
+  margin-top: auto;
+  row-gap: 0.5rem;
+}
+
+.statistic {
+  @include font-size(small);
+  align-items: center;
+  color: $color-black600;
+  column-gap: 0.25rem;
+  display: flex;
+  row-gap: 0.25rem;
+}
