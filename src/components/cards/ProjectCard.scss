@@ -1,0 +1,28 @@
+// ProjectCard component styles
+// Extracted from: app/styles/dependencies/mixins/project-card.scss
+//
+// This file demonstrates the style migration pattern:
+// 1. Styles are extracted from the AngularJS SCSS mixins/modules
+// 2. They are placed alongside the React component
+// 3. The @include project-card mixin is expanded inline here
+// 4. Global variables and mixins are available via Vite's additionalData config
+
+.project-card {
+  @include project-card;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba($color-black, 0.12);
+  }
+
+  .project-card-logo-empty {
+    background-color: $color-gray300;
+    border-radius: 3px;
+    height: 50px;
+    width: 50px;
+  }
+}

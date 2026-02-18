@@ -1,0 +1,61 @@
+// Main SCSS Entry Point for React Migration
+// This file imports all the existing SCSS from the AngularJS application
+// to maintain exact visual appearance during migration.
+
+// 1. Dependencies (variables, mixins, reset, helpers)
+@import './extras/dependencies';
+
+// 2. Core styles
+@import './core/base';
+@import './core/typography';
+@import './core/forms';
+@import './core/elements';
+@import './core/animation';
+
+// 3. Component styles
+@import './components/avatar';
+@import './components/basic-table';
+@import './components/buttons';
+@import './components/buttons-next';
+@import './components/card-placeholder';
+@import './components/check';
+@import './components/created-by';
+@import './components/doomline';
+@import './components/editor-help';
+@import './components/empty';
+@import './components/estimation';
+@import './components/history';
+@import './components/level';
+@import './components/list-items';
+@import './components/loader';
+@import './components/loading-bar';
+@import './components/loading-spinner';
+@import './components/looking-for-people';
+@import './components/notification-message';
+@import './components/paginator';
+@import './components/popover-points';
+@import './components/private';
+@import './components/settings-nav';
+@import './components/summary';
+@import './components/track-btn';
+@import './components/user-list';
+
+// 4. Layout styles
+@import './layout/admin-memberships';
+@import './layout/admin-project-tags';
+@import './layout/admin-project-values';
+@import './layout/auth';
+@import './layout/backlog';
+@import './layout/invitation';
+@import './layout/issues';
+@import './layout/kanban';
+@import './layout/not-found';
+@import './layout/rtl';
+@import './layout/taskboard';
+@import './layout/team';
+@import './layout/ticket-detail';
+@import './layout/wiki';
+@import './layout/wiki-edit';
+
+// 5. Shame (temporary fixes / overrides)
+@import './shame/shame';

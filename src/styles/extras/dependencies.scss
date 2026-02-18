@@ -1,0 +1,56 @@
+// Bourbon (path adjusted for React project structure)
+// Note: bourbon is no longer used as a dependency in the React project.
+// The bourbon mixins that were used have been replaced with standard CSS
+// or custom mixins below.
+
+//#################################################
+//             dependencies
+//#################################################
+
+@import '../themes/taiga/variables';
+@import '../dependencies/reset';
+@import '../dependencies/helpers';
+@import '../dependencies/responsive';
+@import '../dependencies/mixins/avatar';
+@import '../dependencies/mixins/background';
+@import '../dependencies/mixins/box-arrow';
+@import '../dependencies/mixins/box-shadow';
+@import '../dependencies/mixins/btn-group';
+@import '../dependencies/mixins/centered';
+@import '../dependencies/mixins/create';
+@import '../dependencies/mixins/empty-color';
+@import '../dependencies/mixins/import';
+@import '../dependencies/mixins/lightbox';
+@import '../dependencies/mixins/loading-spinner';
+@import '../dependencies/mixins/popover';
+@import '../dependencies/mixins/progress';
+@import '../dependencies/mixins/radio-group';
+@import '../dependencies/mixins/sidebar';
+@import '../dependencies/mixins/slide';
+@import '../dependencies/mixins/svg';
+@import '../dependencies/mixins/tooltip';
+@import '../dependencies/mixins/track-buttons';
+@import '../dependencies/mixins/typography';
+@import '../dependencies/mixins/epics-dashboard';
+@import '../dependencies/mixins/profile-form';
+@import '../dependencies/mixins/project-card';
+
+// Bourbon compatibility shim: ellipsis mixin
+@mixin ellipsis($width: 100%) {
+  display: inline-block;
+  max-width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+//deprecated
+@mixin placeholder {
+  $placeholders: ":-webkit-input" ":-moz" "-moz" "-ms-input";
+  @each $placeholder in $placeholders {
+    &:#{$placeholder}-placeholder {
+      @content;
+    }
+  }
+}
