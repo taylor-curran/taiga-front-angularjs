@@ -1,0 +1,222 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile .profile-bar {
+  margin-bottom: 2rem;
+}
+
+.profile .profile-image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile .profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile .profile-image-wrapper.is-current-user .profile-edition {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #5e81ac;
+  text-decoration: none;
+}
+
+.profile .profile-image-wrapper.is-current-user .profile-edition:hover {
+  text-decoration: underline;
+}
+
+.profile .profile-data {
+  margin-top: 1rem;
+}
+
+.profile .profile-data h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #2e3440;
+}
+
+.profile .profile-data h1.not-full-name {
+  color: #4c566a;
+  font-style: italic;
+}
+
+.profile .profile-data .username-display {
+  color: #4c566a;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.profile .profile-data h2 {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #4c566a;
+  margin: 0.25rem 0 0 0;
+}
+
+.profile .profile-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.profile .profile-stats .stat {
+  text-align: center;
+}
+
+.profile .profile-stats .stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2e3440;
+}
+
+.profile .profile-stats .stat-name {
+  display: block;
+  font-size: 0.8rem;
+  color: #4c566a;
+  text-transform: uppercase;
+}
+
+.profile .profile-quote {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f0f4f8;
+  border-radius: 3px;
+  font-style: italic;
+  color: #4c566a;
+  font-size: 0.9rem;
+}
+
+.profile .main {
+  display: flex;
+  padding: 0;
+}
+
+.profile .timeline-wrapper {
+  margin-right: 3.5rem;
+  flex: 1;
+  max-width: 768px;
+}
+
+.profile .profile-tabs-nav {
+  display: flex;
+  border-bottom: 2px solid #eceff4;
+  margin-bottom: 1.5rem;
+}
+
+.profile .tab-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  color: #4c566a;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.profile .tab-button:hover {
+  color: #2e3440;
+}
+
+.profile .tab-button.active {
+  color: #5e81ac;
+  border-bottom-color: #5e81ac;
+}
+
+.profile .tab-content {
+  padding: 1rem 0;
+}
+
+.profile .profile-sidebar {
+  flex-basis: 150px;
+  flex-shrink: 0;
+  width: 150px;
+}
+
+.profile .profile-sidebar h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: #2e3440;
+}
+
+.profile .profile-sidebar p {
+  font-size: 0.85rem;
+  color: #4c566a;
+  margin: 0 0 1rem 0;
+}
+
+.profile .edit-profile {
+  display: block;
+  padding: 0.5rem 1rem;
+  background: #5e81ac;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.profile .edit-profile:hover {
+  background: #4c6d94;
+}
+
+.profile .empty-tab {
+  padding: 5vh;
+  text-align: center;
+}
+
+.profile .empty-tab p {
+  color: #4c566a;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.profile-contacts .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eceff4;
+}
+
+.profile-contacts .contact-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-contacts .contact-name {
+  color: #2e3440;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.profile-contacts .contact-name:hover {
+  color: #5e81ac;
+}
+
+.profile-contacts .contact-username {
+  display: block;
+  font-size: 0.8rem;
+  color: #4c566a;
+}
