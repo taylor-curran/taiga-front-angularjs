@@ -31,7 +31,7 @@ window.open = (url, name, config) =>
     if url.startsWith('/')
         url = document.baseURI + url
 
-    oldWindowOpen(url)
+    oldWindowOpen(url, name, config)
 
 configure = ($routeProvider, $locationProvider, $httpProvider, $provide, $tgEventsProvider, $compileProvider,
              $translateProvider, $translatePartialLoaderProvider, $animateProvider, $logProvider) ->
